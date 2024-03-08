@@ -1,5 +1,7 @@
 %global debug_package %{nil}
 
+%bcond_without bootstrap2
+
 # Run tests in check section
 %bcond_without check
 
@@ -15,6 +17,11 @@ Name:		golang-x-text
 
 Release:	1
 Source0:	https://github.com/golang/text/archive/v%{version}/text-%{version}.tar.gz
+%if %{with bootstrap2}
+# Generated from Source100
+Source3:	vendor.tar.zst
+Source100:	golang-package-dependencies.sh
+%endif
 URL:		https://github.com/golang/text
 License:	BSD with advertising
 Group:		Development/Other
@@ -51,6 +58,12 @@ building other packages which use import path with
 
 %prep
 %autosetup -p1 -n text-%{version}
+
+rm -rf vendor
+
+%if %{with bootstrap2}
+tar xf %{S:3}
+%endif
 
 %build
 %gobuildroot
