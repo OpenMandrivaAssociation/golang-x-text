@@ -6,14 +6,14 @@
 # https://github.com/golang/net
 %global goipath		golang.org/x/text
 %global forgeurl	https://github.com/golang/text
-Version:		0.14.0
+Version:		0.38.0
 
 %gometa
 
 Summary:	Go text processing support	
 Name:		golang-x-text
 
-Release:	2
+Release:	1
 Source0:	https://github.com/golang/text/archive/v%{version}/text-%{version}.tar.gz
 URL:		https://github.com/golang/text
 License:	BSD with advertising
@@ -56,7 +56,7 @@ building other packages which use import path with
 #-----------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n text-%{version}
+%autosetup -p1 -n text-0.38.0
 
 %build
 %gobuildroot
